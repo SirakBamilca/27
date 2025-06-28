@@ -1,0 +1,1684 @@
+<!DOCTYPE html>
+<html lang="am">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>የመድኃኔዓለም ማህበር ምዝገባ ስርዓት</title>
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2980b9;
+            --success-color: #2ecc71;
+            --danger-color: #e74c3c;
+            --warning-color: #f39c12;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --white: #ffffff;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --border-radius: 8px;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Arial', 'Nyala', sans-serif;
+            line-height: 1.6;
+            background-color: #f5f7fa;
+            color: #333;
+            direction: ltr;
+            min-height: 100vh;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            border-radius: var(--border-radius);
+            margin-bottom: 20px;
+            box-shadow: var(--shadow);
+        }
+        
+        .motto {
+            font-style: italic;
+            margin-top: 10px;
+            font-size: 1.2rem;
+        }
+        
+        .home-page {
+            text-align: center;
+            padding: 40px 20px;
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 20px;
+        }
+        
+        .home-page h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .home-page p {
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+        
+        .home-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .tabs {
+            display: flex;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+            gap: 5px;
+        }
+        
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: var(--light-color);
+            border: 1px solid #ddd;
+            border-bottom: none;
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
+            transition: all 0.3s ease;
+        }
+        
+        .tab:hover {
+            background-color: #d5dbdb;
+        }
+        
+        .tab.active {
+            background-color: var(--white);
+            border-bottom: 1px solid var(--white);
+            margin-bottom: -1px;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .tab-content {
+            display: none;
+            background-color: var(--white);
+            padding: 20px;
+            border-radius: 0 var(--border-radius) var(--border-radius) var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            background-color: var(--white);
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: var(--dark-color);
+        }
+        
+        input[type="text"],
+        input[type="date"],
+        input[type="tel"],
+        input[type="month"],
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-family: inherit;
+            font-size: 1rem;
+        }
+        
+        button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background-color 0.3s;
+            font-family: inherit;
+        }
+        
+        button:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        button.success {
+            background-color: var(--success-color);
+        }
+        
+        button.success:hover {
+            background-color: #27ae60;
+        }
+        
+        button.danger {
+            background-color: var(--danger-color);
+        }
+        
+        button.danger:hover {
+            background-color: #c0392b;
+        }
+        
+        button.warning {
+            background-color: var(--warning-color);
+        }
+        
+        button.warning:hover {
+            background-color: #e67e22;
+        }
+        
+        .action-buttons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .search-box {
+            margin-bottom: 15px;
+            position: relative;
+        }
+        
+        .search-box input {
+            padding-left: 35px;
+        }
+        
+        .search-box::before {
+            content: "🔍";
+            position: absolute;
+            left: 10px;
+            top: 10px;
+            font-size: 1rem;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: var(--light-color);
+            position: sticky;
+            top: 0;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .status-indicator {
+            display: inline-block;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            margin-right: 5px;
+            vertical-align: middle;
+        }
+        
+        .present {
+            background-color: var(--success-color);
+        }
+        
+        .absent {
+            background-color: var(--danger-color);
+        }
+        
+        .paid {
+            background-color: var(--success-color);
+        }
+        
+        .unpaid {
+            background-color: var(--danger-color);
+        }
+        
+        .scrollable-table {
+            max-height: 500px;
+            overflow-y: auto;
+            display: block;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+        }
+        
+        .two-columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .summary-card {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            box-shadow: var(--shadow);
+            margin-bottom: 20px;
+        }
+        
+        .summary-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+        
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .summary-item.total {
+            font-weight: bold;
+            border-top: 1px solid #eee;
+            padding-top: 10px;
+            margin-top: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .two-columns {
+                grid-template-columns: 1fr;
+            }
+            
+            .home-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+            
+            button {
+                width: 100%;
+            }
+        }
+        
+        /* Animation for page transitions */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .tab-content {
+            animation: fadeIn 0.3s ease-out;
+        }
+        
+        /* Print styles */
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            .tab-content.active, .tab-content.active * {
+                visibility: visible;
+            }
+            .tab-content.active {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+            }
+            button {
+                display: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>የመድኃኔዓለም ማህበር ምዝገባ ስርዓት</h1>
+            <div class="motto">የብርሃን ልጆች</div>
+        </header>
+        
+        <!-- Home Page -->
+        <div id="home" class="home-page">
+            <h2>እንኳን ወደ የአባላት ምዝገባ ስርዓታችን በደህና መጡ</h2>
+            <p>ይህ ስርዓት የመድኃኔዓለም ማህበር አባላትን ምዝገባ፣ የመገኘት እና የክፍያ ምዝገባዎችን ለማስተዳደር የተዘጋጀ ነው።</p>
+            <div class="home-buttons">
+                <button class="success" onclick="showTab('register')">አዲስ አባል ይመዝግቡ</button>
+                <button class="warning" onclick="showTab('attendance')">መገኘት ይመዝግቡ</button>
+                <button class="warning" onclick="showTab('payment')">ክፍያ ይመዝግቡ</button>
+                <button onclick="showTab('present-members')">የተገኙ አባላት</button>
+                <button onclick="showTab('paid-members')">ክፍያ የከፈሉ አባላት</button>
+                <button onclick="showTab('reports')">ሪፖርቶች</button>
+            </div>
+        </div>
+        
+        <!-- Main Application Tabs -->
+        <div class="tabs" id="mainTabs" style="display: none;">
+            <div class="tab active" data-tab="register">አዲስ አባል ምዝገባ</div>
+            <div class="tab" data-tab="attendance">የአባላት መገኘት ምዝገባ</div>
+            <div class="tab" data-tab="payment">ወራዊ ክፍያ ምዝገባ</div>
+            <div class="tab" data-tab="present-members">የተገኙ አባላት</div>
+            <div class="tab" data-tab="paid-members">ክፍያ የከፈሉ አባላት</div>
+            <div class="tab" data-tab="reports">ሪፖርቶች</div>
+        </div>
+        
+        <!-- Tab Contents -->
+        <div id="tab-contents">
+            <!-- New Member Registration Tab -->
+            <div id="register" class="tab-content active">
+                <h2>አዲስ አባል ምዝገባ</h2>
+                <div class="section">
+                    <div class="form-group">
+                        <label for="memberId">የአባል መለያ ቁጥር:</label>
+                        <input type="text" id="memberId" placeholder="የአባል መለያ ቁጥር ያስገቡ">
+                    </div>
+                    <div class="form-group">
+                        <label for="memberName">ሙሉ ስም:</label>
+                        <input type="text" id="memberName" placeholder="አባሉን ሙሉ ስም ያስገቡ">
+                    </div>
+                    <div class="form-group">
+                        <label for="christianName">ስመ ክርስትና:</label>
+                        <input type="text" id="christianName" placeholder="የክርስትና ስም ያስገቡ">
+                    </div>
+                    <div class="form-group">
+                        <label for="phoneNumber">የስልክ ቁጥር:</label>
+                        <input type="tel" id="phoneNumber" placeholder="09........" pattern="09[0-9]{8}">
+                    </div>
+                    <div class="form-group">
+                        <label for="memberType">የአባልነት አይነት:</label>
+                        <select id="memberType">
+                            <option value="ፅዋ ቀማሽ">ፅዋ ቀማሽ</option>
+                            <option value="ፅዋ ማይቀምስ">ፅዋ ማይቀምስ</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="serviceDepartment">የአገልግሎት ዘርፍ:</label>
+                        <select id="serviceDepartment">
+                            <option value="መዝሙር ክፍል">መዝሙር ክፍል</option>
+                            <option value="የትምህርት ክፍል">የትምህርት ክፍል</option>
+                            <option value="የጉዞና ልማት ኮሚቴ">የጉዞና ልማት ኮሚቴ</option>
+                            <option value="የግንኙነት ክፍል">የግንኙነት ክፍል</option>
+                        </select>
+                    </div>
+                    <div class="action-buttons">
+                        <button id="addMember" class="success">አባል ጨምር</button>
+                        <button id="clearMemberForm" class="danger">አጽዳ</button>
+                    </div>
+                </div>
+                
+                <h2>የተመዘገቡ አባላት</h2>
+                <div class="search-box">
+                    <input type="text" id="searchMember" placeholder="አባላትን በስም ወይም በመለያ ቁጥር ፈልግ...">
+                </div>
+                <div class="scrollable-table">
+                    <table id="membersTable">
+                        <thead>
+                            <tr>
+                                <th>መለያ ቁጥር</th>
+                                <th>ሙሉ ስም</th>
+                                <th>ስመ ክርስትና</th>
+                                <th>ስልክ</th>
+                                <th>የአባልነት አይነት</th>
+                                <th>የአገልግሎት ዘርፍ</th>
+                                <th>ድርጊቶች</th>
+                            </tr>
+                        </thead>
+                        <tbody id="membersTableBody">
+                            <!-- አባላት ዝርዝር እዚህ ይታያል -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- Attendance Tab -->
+            <div id="attendance" class="tab-content">
+                <h2>የአባላት መገኘት ምዝገባ</h2>
+                <div class="section">
+                    <div class="form-group">
+                        <label for="attendanceDate">ቀን:</label>
+                        <input type="date" id="attendanceDate">
+                    </div>
+                    <div class="form-group">
+                        <label for="serviceType">የአገልግሎት አይነት:</label>
+                        <input type="text" id="serviceType" placeholder="የአገልግሎት አይነት ያስገቡ">
+                    </div>
+                </div>
+                
+                <h3>የአባላት መገኘት ሁኔታ</h3>
+                <div class="search-box">
+                    <input type="text" id="searchAttendance" placeholder="አባላትን በስም ወይም በመለያ ቁጥር ፈልግ...">
+                </div>
+                <div class="scrollable-table">
+                    <table id="attendanceTable">
+                        <thead>
+                            <tr>
+                                <th>መለያ ቁጥር</th>
+                                <th>ሙሉ ስም</th>
+                                <th>ስመ ክርስትና</th>
+                                <th>የአገልግሎት ዘርፍ</th>
+                                <th>የመገኘት ሁኔታ</th>
+                            </tr>
+                        </thead>
+                        <tbody id="attendanceTableBody">
+                            <!-- አባላት ዝርዝር እዚህ ይታያል -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="action-buttons">
+                    <button id="saveAttendance" class="success">የመገኘት ሁኔታ አስቀምጥ</button>
+                    <button id="clearAttendance" class="danger">አጽዳ</button>
+                </div>
+            </div>
+            
+            <!-- Payment Tab -->
+            <div id="payment" class="tab-content">
+                <h2>ወራዊ ክፍያ ምዝገባ</h2>
+                <div class="section">
+                    <div class="form-group">
+                        <label for="paymentMonth">ወር እና ዓመት:</label>
+                        <input type="month" id="paymentMonth">
+                    </div>
+                    <div class="form-group">
+                        <label for="paymentAmount">የክፍያ መጠን (ብር):</label>
+                        <input type="number" id="paymentAmount" placeholder="የክፍያ መጠን ብር ያስገቡ">
+                    </div>
+                </div>
+                
+                <h3>የአባላት ክፍያ ሁኔታ</h3>
+                <div class="search-box">
+                    <input type="text" id="searchPayment" placeholder="አባላትን በስም ወይም በመለያ ቁጥር ፈልግ...">
+                </div>
+                <div class="scrollable-table">
+                    <table id="paymentTable">
+                        <thead>
+                            <tr>
+                                <th>መለያ ቁጥር</th>
+                                <th>ሙሉ ስም</th>
+                                <th>ስመ ክርስትና</th>
+                                <th>የአባልነት አይነት</th>
+                                <th>የክፍያ ሁኔታ</th>
+                            </tr>
+                        </thead>
+                        <tbody id="paymentTableBody">
+                            <!-- ክፍያ ዝርዝር እዚህ ይታያል -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="action-buttons">
+                    <button id="savePayment" class="success">የክፍያ ሁኔታ አስቀምጥ</button>
+                    <button id="clearPayment" class="danger">አጽዳ</button>
+                </div>
+            </div>
+            
+            <!-- Present Members Tab -->
+            <div id="present-members" class="tab-content">
+                <h2>የተገኙ አባላት ዝርዝር</h2>
+                <div class="section">
+                    <div class="form-group">
+                        <label for="presentFilterDate">በቀን ፈልግ:</label>
+                        <input type="date" id="presentFilterDate">
+                    </div>
+                    <div class="form-group">
+                        <label for="presentFilterService">በአገልግሎት አይነት ፈልግ:</label>
+                        <input type="text" id="presentFilterService" placeholder="የአገልግሎት አይነት ያስገቡ">
+                    </div>
+                    <div class="action-buttons">
+                        <button id="filterPresent" class="success">ፈልግ</button>
+                        <button id="resetPresentFilters" class="danger">አጽዳ</button>
+                    </div>
+                </div>
+                
+                <div class="summary-card">
+                    <h3>የተገኙ አባላት ማጠቃለያ</h3>
+                    <div class="summary-item">
+                        <span>ጠቅላላ የተገኙ አባላት:</span>
+                        <span id="totalPresentMembers">0</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>ፅዋ ቀማሽ:</span>
+                        <span id="presentTsewaKemash">0</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>ፅዋ ማይቀምስ:</span>
+                        <span id="presentTsewaMayKemesh">0</span>
+                    </div>
+                </div>
+                
+                <div class="scrollable-table">
+                    <table id="presentMembersTable">
+                        <thead>
+                            <tr>
+                                <th>ቀን</th>
+                                <th>የአገልግሎት አይነት</th>
+                                <th>መለያ ቁጥር</th>
+                                <th>ሙሉ ስም</th>
+                                <th>ስመ ክርስትና</th>
+                                <th>የአገልግሎት ዘርፍ</th>
+                                <th>ድርጊቶች</th>
+                            </tr>
+                        </thead>
+                        <tbody id="presentMembersTableBody">
+                            <!-- የተገኙ አባላት ዝርዝር እዚህ ይታያል -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="action-buttons">
+                    <button id="exportPresentCSV" class="warning">ወደ Excel ላክ</button>
+                    <button id="printPresent" onclick="window.print()">ማተም</button>
+                </div>
+            </div>
+            
+            <!-- Paid Members Tab -->
+            <div id="paid-members" class="tab-content">
+                <h2>ክፍያ የከፈሉ አባላት ዝርዝር</h2>
+                <div class="section">
+                    <div class="form-group">
+                        <label for="paidFilterMonth">በወር �ና ዓመት ፈልግ:</label>
+                        <input type="month" id="paidFilterMonth">
+                    </div>
+                    <div class="form-group">
+                        <label for="paidFilterType">በአባልነት አይነት ፈልግ:</label>
+                        <select id="paidFilterType">
+                            <option value="">ሁሉም</option>
+                            <option value="ፅዋ ቀማሽ">ፅዋ ቀማሽ</option>
+                            <option value="ፅዋ ማይቀምስ">ፅዋ ማይቀምስ</option>
+                        </select>
+                    </div>
+                    <div class="action-buttons">
+                        <button id="filterPaid" class="success">ፈልግ</button>
+                        <button id="resetPaidFilters" class="danger">አጽዳ</button>
+                    </div>
+                </div>
+                
+                <div class="summary-card">
+                    <h3>የክፍያ ማጠቃለያ</h3>
+                    <div class="summary-item">
+                        <span>ጠቅላላ ክፍያ የከፈሉ አባላት:</span>
+                        <span id="totalPaidMembers">0</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>ፅዋ ቀማሽ:</span>
+                        <span id="paidTsewaKemash">0</span>
+                    </div>
+                    <div class="summary-item">
+                        <span>ፅዋ ማይቀምስ:</span>
+                        <span id="paidTsewaMayKemesh">0</span>
+                    </div>
+                    <div class="summary-item total">
+                        <span>ጠቅላላ የተሰበሰበ ገንዘብ:</span>
+                        <span id="totalMoney">0 ብር</span>
+                    </div>
+                </div>
+                
+                <div class="scrollable-table">
+                    <table id="paidMembersTable">
+                        <thead>
+                            <tr>
+                                <th>ወር/ዓመት</th>
+                                <th>መለያ ቁጥር</th>
+                                <th>ሙሉ ስም</th>
+                                <th>ስመ ክርስትና</th>
+                                <th>የአባልነት አይነት</th>
+                                <th>የአገልግሎት ዘርፍ</th>
+                                <th>የክፍያ መጠን</th>
+                                <th>ድርጊቶች</th>
+                            </tr>
+                        </thead>
+                        <tbody id="paidMembersTableBody">
+                            <!-- ክፍያ የከፈሉ አባላት ዝርዝር እዚህ ይታያል -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="action-buttons">
+                    <button id="exportPaidCSV" class="warning">ወደ Excel ላክ</button>
+                    <button id="printPaid" onclick="window.print()">ማተም</button>
+                </div>
+            </div>
+            
+            <!-- Reports Tab -->
+            <div id="reports" class="tab-content">
+                <h2>ሪፖርቶች</h2>
+                <div class="two-columns">
+                    <div class="section">
+                        <h3>የመገኘት ሪፖርት</h3>
+                        <div class="form-group">
+                            <label for="reportStartDate">ከዚህ ቀን ጀምሮ:</label>
+                            <input type="date" id="reportStartDate">
+                        </div>
+                        <div class="form-group">
+                            <label for="reportEndDate">እስከዚህ ቀን ድረስ:</label>
+                            <input type="date" id="reportEndDate">
+                        </div>
+                        <div class="action-buttons">
+                            <button id="generateAttendanceReport" class="success">ሪፖርት አውጣ</button>
+                            <button id="clearAttendanceReport" class="danger">አጽዳ</button>
+                        </div>
+                    </div>
+                    
+                    <div class="section">
+                        <h3>የክፍያ ሪፖርት</h3>
+                        <div class="form-group">
+                            <label for="reportStartMonth">ከዚህ ወር ጀምሮ:</label>
+                            <input type="month" id="reportStartMonth">
+                        </div>
+                        <div class="form-group">
+                            <label for="reportEndMonth">እስከዚህ ወር ድረስ:</label>
+                            <input type="month" id="reportEndMonth">
+                        </div>
+                        <div class="action-buttons">
+                            <button id="generatePaymentReport" class="success">ሪፖርት አውጣ</button>
+                            <button id="clearPaymentReport" class="danger">አጽዳ</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="reportResults" class="section">
+                    <h3>የሪፖርት ውጤት</h3>
+                    <div id="reportContent">
+                        <p>እባክዎ የሚፈልጉትን ሪፖርት አውጡ</p>
+                    </div>
+                    <div class="action-buttons">
+                        <button id="exportReport" class="warning" style="display: none;">ሪፖርት ላክ</button>
+                        <button id="printReport" onclick="window.print()" style="display: none;">ማተም</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Show tab function for home page buttons
+        function showTab(tabId) {
+            document.getElementById('home').style.display = 'none';
+            document.getElementById('mainTabs').style.display = 'flex';
+            
+            // Remove active class from all tabs and content
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            
+            // Add active class to clicked tab and corresponding content
+            document.querySelector(`.tab[data-tab="${tabId}"]`).classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+            
+            // Refresh data when switching tabs
+            if (tabId === 'attendance') {
+                populateAttendanceTable();
+            } else if (tabId === 'payment') {
+                populatePaymentTable();
+            } else if (tabId === 'present-members') {
+                displayPresentMembers();
+            } else if (tabId === 'paid-members') {
+                displayPaidMembers();
+            }
+        }
+        
+        // Return to home page
+        function returnToHome() {
+            document.getElementById('home').style.display = 'block';
+            document.getElementById('mainTabs').style.display = 'none';
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tab functionality
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // Remove active class from all tabs and content
+                    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                    document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                    
+                    // Add active class to clicked tab and corresponding content
+                    tab.classList.add('active');
+                    const tabId = tab.getAttribute('data-tab');
+                    document.getElementById(tabId).classList.add('active');
+                    
+                    // Refresh data when switching tabs
+                    if (tabId === 'attendance') {
+                        populateAttendanceTable();
+                    } else if (tabId === 'payment') {
+                        populatePaymentTable();
+                    } else if (tabId === 'present-members') {
+                        displayPresentMembers();
+                    } else if (tabId === 'paid-members') {
+                        displayPaidMembers();
+                    }
+                });
+            });
+            
+            // Initialize data storage
+            let members = JSON.parse(localStorage.getItem('members')) || [];
+            let attendanceRecords = JSON.parse(localStorage.getItem('attendanceRecords')) || [];
+            let paymentRecords = JSON.parse(localStorage.getItem('paymentRecords')) || [];
+            let paymentAmount = localStorage.getItem('paymentAmount') || 50; // Default payment amount
+            
+            // Set default payment amount
+            document.getElementById('paymentAmount').value = paymentAmount;
+            
+            // Register Members Tab
+            const addMemberBtn = document.getElementById('addMember');
+            const clearMemberFormBtn = document.getElementById('clearMemberForm');
+            const memberIdInput = document.getElementById('memberId');
+            const memberNameInput = document.getElementById('memberName');
+            const christianNameInput = document.getElementById('christianName');
+            const phoneNumberInput = document.getElementById('phoneNumber');
+            const memberTypeInput = document.getElementById('memberType');
+            const serviceDepartmentInput = document.getElementById('serviceDepartment');
+            const membersTableBody = document.getElementById('membersTableBody');
+            const searchMemberInput = document.getElementById('searchMember');
+            
+            // Add member
+            addMemberBtn.addEventListener('click', () => {
+                const id = memberIdInput.value.trim();
+                const name = memberNameInput.value.trim();
+                const christianName = christianNameInput.value.trim();
+                const phone = phoneNumberInput.value.trim();
+                const type = memberTypeInput.value;
+                const department = serviceDepartmentInput.value;
+                
+                if (id && name && christianName && phone) {
+                    // Check if member ID already exists
+                    if (members.some(member => member.id === id)) {
+                        alert('ይህ የአባል መለያ ቁጥር አስቀድሞ አለ!');
+                        return;
+                    }
+                    
+                    // Validate phone number
+                    if (!phone.match(/^09[0-9]{8}$/)) {
+                        alert('እባክዎ ትክክለኛ የስልክ ቁጥር ያስገቡ (09........)');
+                        return;
+                    }
+                    
+                    const newMember = { 
+                        id, 
+                        name, 
+                        christianName, 
+                        phone, 
+                        type, 
+                        department 
+                    };
+                    
+                    members.push(newMember);
+                    saveMembers();
+                    displayMembers();
+                    
+                    // Clear inputs
+                    clearMemberForm();
+                } else {
+                    alert('እባክዎ ሁሉንም መስኮች ይሙሉ!');
+                }
+            });
+            
+            // Clear member form
+            clearMemberFormBtn.addEventListener('click', clearMemberForm);
+            
+            function clearMemberForm() {
+                memberIdInput.value = '';
+                memberNameInput.value = '';
+                christianNameInput.value = '';
+                phoneNumberInput.value = '';
+                memberTypeInput.value = 'ፅዋ ቀማሽ';
+                serviceDepartmentInput.value = 'መዝሙር ክፍል';
+            }
+            
+            // Display members
+            function displayMembers(filter = '') {
+                membersTableBody.innerHTML = '';
+                
+                const filteredMembers = members.filter(member => 
+                    member.name.toLowerCase().includes(filter.toLowerCase()) || 
+                    member.id.toLowerCase().includes(filter.toLowerCase()) ||
+                    member.christianName.toLowerCase().includes(filter.toLowerCase())
+                );
+                
+                if (filteredMembers.length === 0) {
+                    const row = document.createElement('tr');
+                    row.innerHTML = '<td colspan="7" style="text-align: center;">ምንም አባል አልተገኘም</td>';
+                    membersTableBody.appendChild(row);
+                    return;
+                }
+                
+                filteredMembers.forEach(member => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${member.id}</td>
+                        <td>${member.name}</td>
+                        <td>${member.christianName}</td>
+                        <td>${member.phone}</td>
+                        <td>${member.type}</td>
+                        <td>${member.department}</td>
+                        <td>
+                            <button class="edit-btn" data-id="${member.id}">አርትዕ</button>
+                            <button class="delete-btn danger" data-id="${member.id}">ሰርዝ</button>
+                        </td>
+                    `;
+                    membersTableBody.appendChild(row);
+                });
+                
+                // Add event listeners to edit and delete buttons
+                document.querySelectorAll('.edit-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const id = e.target.getAttribute('data-id');
+                        editMember(id);
+                    });
+                });
+                
+                document.querySelectorAll('.delete-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const id = e.target.getAttribute('data-id');
+                        deleteMember(id);
+                    });
+                });
+            }
+            
+            // Edit member
+            function editMember(id) {
+                const member = members.find(m => m.id === id);
+                if (member) {
+                    memberIdInput.value = member.id;
+                    memberNameInput.value = member.name;
+                    christianNameInput.value = member.christianName;
+                    phoneNumberInput.value = member.phone;
+                    memberTypeInput.value = member.type;
+                    serviceDepartmentInput.value = member.department;
+                    
+                    // Remove the member from the array
+                    members = members.filter(m => m.id !== id);
+                    saveMembers();
+                }
+            }
+            
+            // Delete member
+            function deleteMember(id) {
+                if (confirm('ይህን አባል ለማስወገድ እርግጠኛ ነዎት?')) {
+                    members = members.filter(member => member.id !== id);
+                    // Also remove any attendance and payment records for this member
+                    attendanceRecords = attendanceRecords.filter(record => record.memberId !== id);
+                    paymentRecords = paymentRecords.filter(record => record.memberId !== id);
+                    
+                    saveMembers();
+                    saveAttendanceRecords();
+                    savePaymentRecords();
+                    displayMembers();
+                }
+            }
+            
+            // Search members
+            searchMemberInput.addEventListener('input', () => {
+                displayMembers(searchMemberInput.value);
+            });
+            
+            // Save members to localStorage
+            function saveMembers() {
+                localStorage.setItem('members', JSON.stringify(members));
+            }
+            
+            // Attendance Tab
+            const attendanceDateInput = document.getElementById('attendanceDate');
+            const serviceTypeInput = document.getElementById('serviceType');
+            const attendanceTableBody = document.getElementById('attendanceTableBody');
+            const saveAttendanceBtn = document.getElementById('saveAttendance');
+            const clearAttendanceBtn = document.getElementById('clearAttendance');
+            const searchAttendanceInput = document.getElementById('searchAttendance');
+            
+            // Set default date to today
+            attendanceDateInput.valueAsDate = new Date();
+            
+            // Populate attendance table
+            function populateAttendanceTable(filter = '') {
+                attendanceTableBody.innerHTML = '';
+                
+                const filteredMembers = members.filter(member => 
+                    member.name.toLowerCase().includes(filter.toLowerCase()) || 
+                    member.id.toLowerCase().includes(filter.toLowerCase()) ||
+                    member.christianName.toLowerCase().includes(filter.toLowerCase())
+                );
+                
+                if (filteredMembers.length === 0) {
+                    const row = document.createElement('tr');
+                    row.innerHTML = '<td colspan="5" style="text-align: center;">ምንም አባል አልተገኘም</td>';
+                    attendanceTableBody.appendChild(row);
+                    return;
+                }
+                
+                filteredMembers.forEach(member => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${member.id}</td>
+                        <td>${member.name}</td>
+                        <td>${member.christianName}</td>
+                        <td>${member.department}</td>
+                        <td>
+                            <select class="attendance-status" data-id="${member.id}">
+                                <option value="present">ተገኝቷል</option>
+                                <option value="absent">አልተገኘም</option>
+                            </select>
+                        </td>
+                    `;
+                    attendanceTableBody.appendChild(row);
+                });
+            }
+            
+            // Search attendance by name or ID
+            searchAttendanceInput.addEventListener('input', () => {
+                populateAttendanceTable(searchAttendanceInput.value);
+            });
+            
+            // Save attendance (only present members)
+            saveAttendanceBtn.addEventListener('click', () => {
+                const date = attendanceDateInput.value;
+                const serviceType = serviceTypeInput.value.trim();
+                
+                if (!date) {
+                    alert('እባክዎ ቀን ይምረጡ!');
+                    return;
+                }
+                
+                if (!serviceType) {
+                    alert('እባክዎ የአገልግሎት አይነት ያስገቡ!');
+                    return;
+                }
+                
+                const statusElements = document.querySelectorAll('.attendance-status');
+                const newRecords = [];
+                
+                statusElements.forEach(element => {
+                    const memberId = element.getAttribute('data-id');
+                    const status = element.value;
+                    const member = members.find(m => m.id === memberId);
+                    
+                    // Only save present members (ተገኝቷል)
+                    if (member && status === "present") {
+                        newRecords.push({
+                            date,
+                            serviceType,
+                            memberId: member.id,
+                            memberName: member.name,
+                            christianName: member.christianName,
+                            department: member.department,
+                            type: member.type,
+                            status
+                        });
+                    }
+                });
+                
+                if (newRecords.length > 0) {
+                    attendanceRecords = [...attendanceRecords, ...newRecords];
+                    saveAttendanceRecords();
+                    alert('የተገኙ አባላት በትክክል ተመዝግበዋል!');
+                    
+                    // Clear inputs
+                    serviceTypeInput.value = '';
+                    populateAttendanceTable();
+                } else {
+                    alert('ምንም የተገኙ አባላት የሉም! እባክዎ "ተገኝቷል" የሚለውን ይምረጡ');
+                }
+            });
+            
+            // Clear attendance
+            clearAttendanceBtn.addEventListener('click', () => {
+                serviceTypeInput.value = '';
+                populateAttendanceTable();
+            });
+            
+            // Save attendance records to localStorage
+            function saveAttendanceRecords() {
+                localStorage.setItem('attendanceRecords', JSON.stringify(attendanceRecords));
+            }
+            
+            // Payment Tab
+            const paymentMonthInput = document.getElementById('paymentMonth');
+            const paymentAmountInput = document.getElementById('paymentAmount');
+            const paymentTableBody = document.getElementById('paymentTableBody');
+            const savePaymentBtn = document.getElementById('savePayment');
+            const clearPaymentBtn = document.getElementById('clearPayment');
+            const searchPaymentInput = document.getElementById('searchPayment');
+            
+            // Set default month to current month
+            const today = new Date();
+            paymentMonthInput.value = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}`;
+            
+            // Save payment amount when changed
+            paymentAmountInput.addEventListener('change', () => {
+                paymentAmount = paymentAmountInput.value;
+                localStorage.setItem('paymentAmount', paymentAmount);
+            });
+            
+            // Populate payment table
+            function populatePaymentTable(filter = '') {
+                paymentTableBody.innerHTML = '';
+                
+                const filteredMembers = members.filter(member => 
+                    member.name.toLowerCase().includes(filter.toLowerCase()) || 
+                    member.id.toLowerCase().includes(filter.toLowerCase()) ||
+                    member.christianName.toLowerCase().includes(filter.toLowerCase())
+                );
+                
+                if (filteredMembers.length === 0) {
+                    const row = document.createElement('tr');
+                    row.innerHTML = '<td colspan="5" style="text-align: center;">ምንም አባል አልተገኘም</td>';
+                    paymentTableBody.appendChild(row);
+                    return;
+                }
+                
+                filteredMembers.forEach(member => {
+                    // Check if member already paid for this month
+                    const month = paymentMonthInput.value;
+                    const hasPaid = paymentRecords.some(record => 
+                        record.memberId === member.id && record.month === month && record.status === "paid"
+                    );
+                    
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${member.id}</td>
+                        <td>${member.name}</td>
+                        <td>${member.christianName}</td>
+                        <td>${member.type}</td>
+                        <td>
+                            <select class="payment-status" data-id="${member.id}">
+                                <option value="paid" ${hasPaid ? 'selected' : ''}>ከፍሏል</option>
+                                <option value="unpaid" ${!hasPaid ? 'selected' : ''}>አልከፈለም</option>
+                            </select>
+                        </td>
+                    `;
+                    paymentTableBody.appendChild(row);
+                });
+            }
+            
+            // Search payment by name or ID
+            searchPaymentInput.addEventListener('input', () => {
+                populatePaymentTable(searchPaymentInput.value);
+            });
+            
+            // Save payment (only paid members)
+            savePaymentBtn.addEventListener('click', () => {
+                const month = paymentMonthInput.value;
+                const amount = paymentAmountInput.value;
+                
+                if (!month) {
+                    alert('እባክዎ ወር እና ዓመት ይምረጡ!');
+                    return;
+                }
+                
+                if (!amount || isNaN(amount)) {
+                    alert('እባክዎ ትክክለኛ የክፍያ መጠን ያስገቡ!');
+                    return;
+                }
+                
+                const statusElements = document.querySelectorAll('.payment-status');
+                const newRecords = [];
+                
+                statusElements.forEach(element => {
+                    const memberId = element.getAttribute('data-id');
+                    const status = element.value;
+                    const member = members.find(m => m.id === memberId);
+                    
+                    // Only save paid members (ከፍሏል)
+                    if (member && status === "paid") {
+                        newRecords.push({
+                            month,
+                            amount,
+                            memberId: member.id,
+                            memberName: member.name,
+                            christianName: member.christianName,
+                            type: member.type,
+                            department: member.department,
+                            status
+                        });
+                    }
+                });
+                
+                if (newRecords.length > 0) {
+                    // Remove any existing records for this month for these members
+                    paymentRecords = paymentRecords.filter(record => 
+                        !(record.month === month && newRecords.some(newRecord => newRecord.memberId === record.memberId))
+                    );
+                    
+                    paymentRecords = [...paymentRecords, ...newRecords];
+                    savePaymentRecords();
+                    alert('የክፍያ ሁኔታ በትክክል ተመዝግበዋል!');
+                    
+                    populatePaymentTable();
+                } else {
+                    alert('ምንም ክፍያ የከፈሉ አባላት የሉም! እባክዎ "ከፍሏል" የሚለውን ይምረጡ');
+                }
+            });
+            
+            // Clear payment
+            clearPaymentBtn.addEventListener('click', () => {
+                populatePaymentTable();
+            });
+            
+            // Save payment records to localStorage
+            function savePaymentRecords() {
+                localStorage.setItem('paymentRecords', JSON.stringify(paymentRecords));
+            }
+            
+            // Present Members Tab
+            const presentFilterDateInput = document.getElementById('presentFilterDate');
+            const presentFilterServiceInput = document.getElementById('presentFilterService');
+            const filterPresentBtn = document.getElementById('filterPresent');
+            const resetPresentFiltersBtn = document.getElementById('resetPresentFilters');
+            const presentMembersTableBody = document.getElementById('presentMembersTableBody');
+            const exportPresentCSVBtn = document.getElementById('exportPresentCSV');
+            
+            // Display present members
+            function displayPresentMembers(dateFilter = '', serviceFilter = '') {
+                presentMembersTableBody.innerHTML = '';
+                
+                // Only show present records (ተገኝቷል)
+                let filteredRecords = attendanceRecords.filter(record => record.status === "present");
+                
+                if (dateFilter) {
+                    filteredRecords = filteredRecords.filter(record => record.date === dateFilter);
+                }
+                
+                if (serviceFilter) {
+                    filteredRecords = filteredRecords.filter(record => 
+                        record.serviceType.toLowerCase().includes(serviceFilter.toLowerCase())
+                    );
+                }
+                
+                // Update summary
+                const totalPresent = filteredRecords.length;
+                const tsewaKemash = filteredRecords.filter(record => record.type === "ፅዋ ቀማሽ").length;
+                const tsewaMayKemesh = filteredRecords.filter(record => record.type === "ፅዋ ማይቀምስ").length;
+                
+                document.getElementById('totalPresentMembers').textContent = totalPresent;
+                document.getElementById('presentTsewaKemash').textContent = tsewaKemash;
+                document.getElementById('presentTsewaMayKemesh').textContent = tsewaMayKemesh;
+                
+                if (filteredRecords.length === 0) {
+                    const row = document.createElement('tr');
+                    row.innerHTML = '<td colspan="7" style="text-align: center;">ምንም የተመዘገቡ አባላት የሉም</td>';
+                    presentMembersTableBody.appendChild(row);
+                    return;
+                }
+                
+                filteredRecords.forEach(record => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${record.date}</td>
+                        <td>${record.serviceType}</td>
+                        <td>${record.memberId}</td>
+                        <td>${record.memberName}</td>
+                        <td>${record.christianName}</td>
+                        <td>${record.department}</td>
+                        <td>
+                            <button class="delete-attendance-btn danger" data-date="${record.date}" data-member="${record.memberId}">ሰርዝ</button>
+                        </td>
+                    `;
+                    presentMembersTableBody.appendChild(row);
+                });
+                
+                // Add event listeners to delete buttons
+                document.querySelectorAll('.delete-attendance-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const date = e.target.getAttribute('data-date');
+                        const memberId = e.target.getAttribute('data-member');
+                        deleteAttendanceRecord(date, memberId);
+                    });
+                });
+            }
+            
+            // Delete attendance record
+            function deleteAttendanceRecord(date, memberId) {
+                if (confirm('ይህን የመገኘት ምዝገባ ለማስወገድ እርግጠኛ ነዎት?')) {
+                    attendanceRecords = attendanceRecords.filter(record => 
+                        !(record.date === date && record.memberId === memberId && record.status === "present")
+                    );
+                    saveAttendanceRecords();
+                    displayPresentMembers(presentFilterDateInput.value, presentFilterServiceInput.value);
+                }
+            }
+            
+            // Filter present members
+            filterPresentBtn.addEventListener('click', () => {
+                const dateFilter = presentFilterDateInput.value;
+                const serviceFilter = presentFilterServiceInput.value.trim();
+                displayPresentMembers(dateFilter, serviceFilter);
+            });
+            
+            // Reset present members filters
+            resetPresentFiltersBtn.addEventListener('click', () => {
+                presentFilterDateInput.value = '';
+                presentFilterServiceInput.value = '';
+                displayPresentMembers();
+            });
+            
+            // Export present members to CSV
+            exportPresentCSVBtn.addEventListener('click', () => {
+                const presentRecords = attendanceRecords.filter(record => record.status === "present");
+                
+                if (presentRecords.length === 0) {
+                    alert('ለመላክ የሚገኝ የተመዘገቡ አባላት የለም!');
+                    return;
+                }
+                
+                let csv = 'ቀን,የአገልግሎት አይነት,መለያ ቁጥር,ሙሉ ስም,ስመ ክርስትና,የአገልግሎት ዘርፍ,የአባልነት አይነት\n';
+                
+                presentRecords.forEach(record => {
+                    csv += `"${record.date}","${record.serviceType}","${record.memberId}","${record.memberName}","${record.christianName}","${record.department}","${record.type}"\n`;
+                });
+                
+                const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.setAttribute('hidden', '');
+                a.setAttribute('href', url);
+                a.setAttribute('download', 'የተገኙ_አባላት_ምዝገባ.csv');
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+            });
+            
+            // Paid Members Tab
+            const paidFilterMonthInput = document.getElementById('paidFilterMonth');
+            const paidFilterTypeInput = document.getElementById('paidFilterType');
+            const filterPaidBtn = document.getElementById('filterPaid');
+            const resetPaidFiltersBtn = document.getElementById('resetPaidFilters');
+            const paidMembersTableBody = document.getElementById('paidMembersTableBody');
+            const exportPaidCSVBtn = document.getElementById('exportPaidCSV');
+            
+            // Display paid members
+            function displayPaidMembers(monthFilter = '', typeFilter = '') {
+                paidMembersTableBody.innerHTML = '';
+                
+                // Only show paid records (ከፍሏል)
+                let filteredRecords = paymentRecords.filter(record => record.status === "paid");
+                
+                if (monthFilter) {
+                    filteredRecords = filteredRecords.filter(record => record.month === monthFilter);
+                }
+                
+                if (typeFilter) {
+                    filteredRecords = filteredRecords.filter(record => record.type === typeFilter);
+                }
+                
+                // Update summary
+                const totalPaid = filteredRecords.length;
+                const tsewaKemash = filteredRecords.filter(record => record.type === "ፅዋ ቀማሽ").length;
+                const tsewaMayKemesh = filteredRecords.filter(record => record.type === "ፅዋ ማይቀምስ").length;
+                const totalMoney = filteredRecords.reduce((sum, record) => sum + parseFloat(record.amount), 0);
+                
+                document.getElementById('totalPaidMembers').textContent = totalPaid;
+                document.getElementById('paidTsewaKemash').textContent = tsewaKemash;
+                document.getElementById('paidTsewaMayKemesh').textContent = tsewaMayKemesh;
+                document.getElementById('totalMoney').textContent = totalMoney.toFixed(2) + ' ብር';
+                
+                if (filteredRecords.length === 0) {
+                    const row = document.createElement('tr');
+                    row.innerHTML = '<td colspan="8" style="text-align: center;">ምንም ክፍያ የከፈሉ አባላት የሉም</td>';
+                    paidMembersTableBody.appendChild(row);
+                    return;
+                }
+                
+                filteredRecords.forEach(record => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${record.month}</td>
+                        <td>${record.memberId}</td>
+                        <td>${record.memberName}</td>
+                        <td>${record.christianName}</td>
+                        <td>${record.type}</td>
+                        <td>${record.department}</td>
+                        <td>${parseFloat(record.amount).toFixed(2)} ብር</td>
+                        <td>
+                            <button class="delete-payment-btn danger" data-month="${record.month}" data-member="${record.memberId}">ሰርዝ</button>
+                        </td>
+                    `;
+                    paidMembersTableBody.appendChild(row);
+                });
+                
+                // Add event listeners to delete buttons
+                document.querySelectorAll('.delete-payment-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        const month = e.target.getAttribute('data-month');
+                        const memberId = e.target.getAttribute('data-member');
+                        deletePaymentRecord(month, memberId);
+                    });
+                });
+            }
+            
+            // Delete payment record
+            function deletePaymentRecord(month, memberId) {
+                if (confirm('ይህን የክፍያ ምዝገባ ለማስወገድ እርግጠኛ ነዎት?')) {
+                    paymentRecords = paymentRecords.filter(record => 
+                        !(record.month === month && record.memberId === memberId && record.status === "paid")
+                    );
+                    savePaymentRecords();
+                    displayPaidMembers(paidFilterMonthInput.value, paidFilterTypeInput.value);
+                }
+            }
+            
+            // Filter paid members
+            filterPaidBtn.addEventListener('click', () => {
+                const monthFilter = paidFilterMonthInput.value;
+                const typeFilter = paidFilterTypeInput.value;
+                displayPaidMembers(monthFilter, typeFilter);
+            });
+            
+            // Reset paid members filters
+            resetPaidFiltersBtn.addEventListener('click', () => {
+                paidFilterMonthInput.value = '';
+                paidFilterTypeInput.value = '';
+                displayPaidMembers();
+            });
+            
+            // Export paid members to CSV
+            exportPaidCSVBtn.addEventListener('click', () => {
+                const paidRecords = paymentRecords.filter(record => record.status === "paid");
+                
+                if (paidRecords.length === 0) {
+                    alert('ለመላክ የሚገኝ ክፍያ የከፈሉ አባላት የለም!');
+                    return;
+                }
+                
+                let csv = 'ወር/ዓመት,መለያ ቁጥር,ሙሉ ስም,ስመ ክርስትና,የአባልነት አይነት,የአገልግሎት ዘርፍ,የክፍያ መጠን\n';
+                
+                paidRecords.forEach(record => {
+                    csv += `"${record.month}","${record.memberId}","${record.memberName}","${record.christianName}","${record.type}","${record.department}","${parseFloat(record.amount).toFixed(2)}"\n`;
+                });
+                
+                const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.setAttribute('hidden', '');
+                a.setAttribute('href', url);
+                a.setAttribute('download', 'ክፍያ_የከፈሉ_አባላት.csv');
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+            });
+            
+            // Reports Tab
+            const reportStartDateInput = document.getElementById('reportStartDate');
+            const reportEndDateInput = document.getElementById('reportEndDate');
+            const reportStartMonthInput = document.getElementById('reportStartMonth');
+            const reportEndMonthInput = document.getElementById('reportEndMonth');
+            const generateAttendanceReportBtn = document.getElementById('generateAttendanceReport');
+            const generatePaymentReportBtn = document.getElementById('generatePaymentReport');
+            const clearAttendanceReportBtn = document.getElementById('clearAttendanceReport');
+            const clearPaymentReportBtn = document.getElementById('clearPaymentReport');
+            const reportContentDiv = document.getElementById('reportContent');
+            const exportReportBtn = document.getElementById('exportReport');
+            
+            // Set default dates for reports
+            const firstDayOfMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+            reportStartDateInput.valueAsDate = firstDayOfMonth;
+            reportEndDateInput.valueAsDate = today;
+            
+            const currentMonth = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}`;
+            reportStartMonthInput.value = currentMonth;
+            reportEndMonthInput.value = currentMonth;
+            
+            // Generate attendance report
+            generateAttendanceReportBtn.addEventListener('click', () => {
+                const startDate = reportStartDateInput.value;
+                const endDate = reportEndDateInput.value;
+                
+                if (!startDate || !endDate) {
+                    alert('እባክዎ ሁለቱንም ቀኖች ይምረጡ!');
+                    return;
+                }
+                
+                if (startDate > endDate) {
+                    alert('የመጀመሪያው ቀን ከመጨረሻው ቀን በፊት ሊሆን ይገባል!');
+                    return;
+                }
+                
+                // Filter attendance records by date range
+                const filteredRecords = attendanceRecords.filter(record => 
+                    record.status === "present" && 
+                    record.date >= startDate && 
+                    record.date <= endDate
+                );
+                
+                if (filteredRecords.length === 0) {
+                    reportContentDiv.innerHTML = '<p>በተመረጠው የጊዜ ክልል ምንም የተመዘገቡ አባላት የሉም</p>';
+                    exportReportBtn.style.display = 'none';
+                    document.getElementById('printReport').style.display = 'none';
+                    return;
+                }
+                
+                // Group by date and count members
+                const reportByDate = {};
+                filteredRecords.forEach(record => {
+                    if (!reportByDate[record.date]) {
+                        reportByDate[record.date] = {
+                            date: record.date,
+                            serviceType: record.serviceType,
+                            count: 0,
+                            tsewaKemash: 0,
+                            tsewaMayKemesh: 0,
+                            members: []
+                        };
+                    }
+                    reportByDate[record.date].count++;
+                    if (record.type === "ፅዋ ቀማሽ") {
+                        reportByDate[record.date].tsewaKemash++;
+                    } else {
+                        reportByDate[record.date].tsewaMayKemesh++;
+                    }
+                    reportByDate[record.date].members.push(record);
+                });
+                
+                // Calculate totals
+                const totalPresent = filteredRecords.length;
+                const totalTsewaKemash = filteredRecords.filter(record => record.type === "ፅዋ ቀማሽ").length;
+                const totalTsewaMayKemesh = filteredRecords.filter(record => record.type === "ፅዋ ማይቀምስ").length;
+                
+                // Generate report HTML
+                let html = `<h4>የአባላት መገኘት ሪፖርት: ${startDate} እስከ ${endDate}</h4>`;
+                html += '<div class="summary-card">';
+                html += '<h3>ጠቅላላ ማጠቃለያ</h3>';
+                html += `<div class="summary-item"><span>ጠቅላላ የተገኙ አባላት:</span><span>${totalPresent}</span></div>`;
+                html += `<div class="summary-item"><span>ፅዋ ቀማሽ:</span><span>${totalTsewaKemash}</span></div>`;
+                html += `<div class="summary-item"><span>ፅዋ ማይቀምስ:</span><span>${totalTsewaMayKemesh}</span></div>`;
+                html += '</div>';
+                
+                html += '<table><thead><tr><th>ቀን</th><th>የአገልግሎት አይነት</th><th>ጠቅላላ አባላት</th><th>ፅዋ ቀማሽ</th><th>ፅዋ ማይቀምስ</th></tr></thead><tbody>';
+                
+                for (const date in reportByDate) {
+                    html += `<tr>
+                        <td>${reportByDate[date].date}</td>
+                        <td>${reportByDate[date].serviceType}</td>
+                        <td>${reportByDate[date].count}</td>
+                        <td>${reportByDate[date].tsewaKemash}</td>
+                        <td>${reportByDate[date].tsewaMayKemesh}</td>
+                    </tr>`;
+                }
+                
+                html += '</tbody></table>';
+                reportContentDiv.innerHTML = html;
+                
+                // Set up export button
+                exportReportBtn.style.display = 'inline-block';
+                document.getElementById('printReport').style.display = 'inline-block';
+                exportReportBtn.onclick = () => {
+                    let csv = 'ቀን,የአገልግሎት አይነት,ጠቅላላ አባላት,ፅዋ ቀማሽ,ፅዋ ማይቀምስ,የተገኙ አባላት\n';
+                    
+                    for (const date in reportByDate) {
+                        const membersList = reportByDate[date].members
+                            .map(m => `${m.memberName} (${m.memberId})`)
+                            .join('; ');
+                            
+                        csv += `"${reportByDate[date].date}","${reportByDate[date].serviceType}","${reportByDate[date].count}","${reportByDate[date].tsewaKemash}","${reportByDate[date].tsewaMayKemesh}","${membersList}"\n`;
+                    }
+                    
+                    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.setAttribute('hidden', '');
+                    a.setAttribute('href', url);
+                    a.setAttribute('download', `የአባላት_መገኘት_ሪፖርት_${startDate}_${endDate}.csv`);
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                };
+            });
+            
+            // Clear attendance report
+            clearAttendanceReportBtn.addEventListener('click', () => {
+                reportContentDiv.innerHTML = '<p>እባክዎ የሚፈልጉትን ሪፖርት አውጡ</p>';
+                exportReportBtn.style.display = 'none';
+                document.getElementById('printReport').style.display = 'none';
+            });
+            
+            // Generate payment report
+            generatePaymentReportBtn.addEventListener('click', () => {
+                const startMonth = reportStartMonthInput.value;
+                const endMonth = reportEndMonthInput.value;
+                
+                if (!startMonth || !endMonth) {
+                    alert('እባክዎ ሁለቱንም ወራት ይምረጡ!');
+                    return;
+                }
+                
+                if (startMonth > endMonth) {
+                    alert('የመጀመሪያው ወር ከመጨረሻው ወር በፊት ሊሆን ይገባል!');
+                    return;
+                }
+                
+                // Filter payment records by month range
+                const filteredRecords = paymentRecords.filter(record => 
+                    record.status === "paid" && 
+                    record.month >= startMonth && 
+                    record.month <= endMonth
+                );
+                
+                if (filteredRecords.length === 0) {
+                    reportContentDiv.innerHTML = '<p>በተመረጠው የጊዜ ክልል ምንም ክፍያ የከፈሉ አባላት የሉም</p>';
+                    exportReportBtn.style.display = 'none';
+                    document.getElementById('printReport').style.display = 'none';
+                    return;
+                }
+                
+                // Group by month and count members
+                const reportByMonth = {};
+                filteredRecords.forEach(record => {
+                    if (!reportByMonth[record.month]) {
+                        reportByMonth[record.month] = {
+                            month: record.month,
+                            count: 0,
+                            tsewaKemash: 0,
+                            tsewaMayKemesh: 0,
+                            totalAmount: 0,
+                            members: []
+                        };
+                    }
+                    reportByMonth[record.month].count++;
+                    if (record.type === "ፅዋ ቀማሽ") {
+                        reportByMonth[record.month].tsewaKemash++;
+                    } else {
+                        reportByMonth[record.month].tsewaMayKemesh++;
+                    }
+                    reportByMonth[record.month].totalAmount += parseFloat(record.amount);
+                    reportByMonth[record.month].members.push(record);
+                });
+                
+                // Calculate totals
+                const totalPaid = filteredRecords.length;
+                const totalTsewaKemash = filteredRecords.filter(record => record.type === "ፅዋ ቀማሽ").length;
+                const totalTsewaMayKemesh = filteredRecords.filter(record => record.type === "ፅዋ ማይቀምስ").length;
+                const totalMoney = filteredRecords.reduce((sum, record) => sum + parseFloat(record.amount), 0);
+                
+                // Generate report HTML
+                let html = `<h4>የክፍያ ሪፖርት: ${startMonth} እስከ ${endMonth}</h4>`;
+                html += '<div class="summary-card">';
+                html += '<h3>ጠቅላላ ማጠቃለያ</h3>';
+                html += `<div class="summary-item"><span>ጠቅላላ ክፍያ የከፈሉ አባላት:</span><span>${totalPaid}</span></div>`;
+                html += `<div class="summary-item"><span>ፅዋ ቀማሽ:</span><span>${totalTsewaKemash}</span></div>`;
+                html += `<div class="summary-item"><span>ፅዋ ማይቀምስ:</span><span>${totalTsewaMayKemesh}</span></div>`;
+                html += `<div class="summary-item total"><span>ጠቅላላ የተሰበሰበ ገንዘብ:</span><span>${totalMoney.toFixed(2)} ብር</span></div>`;
+                html += '</div>';
+                
+                html += '<table><thead><tr><th>ወር</th><th>ጠቅላላ አባላት</th><th>ፅዋ ቀማሽ</th><th>ፅዋ ማይቀምስ</th><th>ጠቅላላ ገንዘብ</th></tr></thead><tbody>';
+                
+                for (const month in reportByMonth) {
+                    html += `<tr>
+                        <td>${reportByMonth[month].month}</td>
+                        <td>${reportByMonth[month].count}</td>
+                        <td>${reportByMonth[month].tsewaKemash}</td>
+                        <td>${reportByMonth[month].tsewaMayKemesh}</td>
+                        <td>${reportByMonth[month].totalAmount.toFixed(2)} ብር</td>
+                    </tr>`;
+                }
+                
+                html += '</tbody></table>';
+                reportContentDiv.innerHTML = html;
+                
+                // Set up export button
+                exportReportBtn.style.display = 'inline-block';
+                document.getElementById('printReport').style.display = 'inline-block';
+                exportReportBtn.onclick = () => {
+                    let csv = 'ወር,ጠቅላላ አባላት,ፅዋ ቀማሽ,ፅዋ ማይቀምስ,ጠቅላላ ገንዘብ,የከፈሉ አባላት\n';
+                    
+                    for (const month in reportByMonth) {
+                        const membersList = reportByMonth[month].members
+                            .map(m => `${m.memberName} (${m.memberId})`)
+                            .join('; ');
+                            
+                        csv += `"${reportByMonth[month].month}","${reportByMonth[month].count}","${reportByMonth[month].tsewaKemash}","${reportByMonth[month].tsewaMayKemesh}","${reportByMonth[month].totalAmount.toFixed(2)}","${membersList}"\n`;
+                    }
+                    
+                    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.setAttribute('hidden', '');
+                    a.setAttribute('href', url);
+                    a.setAttribute('download', `የክፍያ_ሪፖርት_${startMonth}_${endMonth}.csv`);
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                };
+            });
+            
+            // Clear payment report
+            clearPaymentReportBtn.addEventListener('click', () => {
+                reportContentDiv.innerHTML = '<p>እባክዎ የሚፈልጉትን ሪፖርት አውጡ</p>';
+                exportReportBtn.style.display = 'none';
+                document.getElementById('printReport').style.display = 'none';
+            });
+            
+            // Initialize displays
+            displayMembers();
+            populateAttendanceTable();
+            populatePaymentTable();
+            displayPresentMembers();
+            displayPaidMembers();
+        });
+    </script>
+</body>
+</html>
